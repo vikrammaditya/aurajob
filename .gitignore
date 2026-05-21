@@ -1,0 +1,17 @@
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local data cache
+data/jobs.json
+
+# Local digests & system logs
+jobs_digest/
+.system_generated/
+logs/
+scratch/
+task.md
+walkthrough.md
+implementation_plan.md

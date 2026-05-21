@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraJob | Premium AI/ML & Data Job Monitor</title>
+  <!-- SEO & Meta -->
+  <meta name="description" content="State-of-the-art developer console to monitor and track high-tier AI, Machine Learning, Data Science, and Engineering job postings globally.">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <!-- Ambient Gradient Background Shapes -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Dashboard Container -->
+  <div class="app-container">
+    
+    <!-- Top Premium Navigation -->
+    <header class="glass-header" id="dashboard-header">
+      <div class="header-logo">
+        <div class="logo-icon-wrapper">
+          <i class="fa-solid fa-brain-circuit brain-logo"></i>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">AURA<span class="gradient-text">JOB</span></span>
+          <span class="logo-tagline">AI/ML & Data Job Intelligence</span>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <div class="sync-status">
+          <span class="status-indicator live"></span>
+          <span class="status-label">Database Connected</span>
+        </div>
+        <button id="btn-sync" class="btn btn-primary btn-glow" title="Synchronize database with live remote listings">
+          <i class="fa-solid fa-arrows-rotate sync-icon"></i>
+          <span>Sync Listings</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="dashboard-content">
+      
+      <!-- Candidate Profile Matcher Console -->
+      <section class="profile-console-section glass-card" id="profile-console" style="margin-bottom: 20px; padding: 18px 24px;">
+        <div class="profile-header" id="btn-toggle-profile" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+          <div class="profile-title" style="display: flex; align-items: center; gap: 12px; font-family: var(--font-heading); font-size: 16px; font-weight: 600;">
+            <i class="fa-solid fa-id-card-clip" style="color: var(--accent-magenta); font-size: 20px;"></i>
+            <span id="profile-candidate-name">Candidate Profile Console</span>
+            <span class="badge ai-tag" id="profile-candidate-tagline" style="background: rgba(217, 70, 239, 0.15); color: var(--accent-magenta); border: 1px solid rgba(217, 70, 239, 0.3);">Candidate Tagline</span>
+          </div>
+          <button class="btn-toggle-profile" style="background: transparent; border: none; color: var(--text-secondary); cursor: pointer; font-size: 16px;">
+            <i class="fa-solid fa-chevron-down" id="profile-toggle-icon" style="transition: var(--transition-smooth);"></i>
+          </button>
+        </div>
+        <div class="profile-body hidden" id="profile-details-body" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--glass-border); transition: var(--transition-smooth);">
+          <div class="profile-details-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            <div class="profile-info-box">
+              <h4 style="font-size: 13px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Education & Experience</h4>
+              <p id="profile-candidate-education" style="font-size: 14px; line-height: 1.5; color: var(--text-primary); margin-bottom: 12px;">Candidate Education Details</p>
+              <div class="profile-meta-tags" id="profile-candidate-tags" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <!-- Populated dynamically via CANDIDATE_PROFILE in app.js -->
+              </div>
+            </div>
+            <div class="profile-skills-box">
+              <h4 style="font-size: 13px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Verified Profile Skills (AI Engine Weights)</h4>
+              <div class="skills-tags" id="profile-candidate-skills" style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <!-- Populated dynamically via CANDIDATE_PROFILE in app.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Premium Stats Grid -->
+      <section class="stats-grid" id="statistics-console">
+        <div class="stat-card glass-card">
+          <div class="stat-icon-box cyan-glow">
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+          <div class="stat-info">
+            <h3 class="stat-value" id="stat-total">0</h3>
+            <p class="stat-label">Monitored Openings</p>
+          </div>
+          <div class="stat-trend positive">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+            <span>Active Feed</span>
+          </div>
+        </div>
+
+        <div class="stat-card glass-card">
+          <div class="stat-icon-box magenta-glow">
+            <i class="fa-solid fa-microchip"></i>
+          </div>
+          <div class="stat-info">
+            <h3 class="stat-value" id="stat-aiml">0</h3>
+            <p class="stat-label">AI / ML Roles</p>
+          </div>
+          <div class="stat-tag ai-tag">High Demand</div>
+        </div>
+
+        <div class="stat-card glass-card">
+          <div class="stat-icon-box gold-glow">
+            <i class="fa-solid fa-database"></i>
+          </div>
+          <div class="stat-info">
+            <h3 class="stat-value" id="stat-data">0</h3>
+            <p class="stat-label">Data Scientists & Eng</p>
+          </div>
+          <div class="stat-tag data-tag">Enterprise Core</div>
+        </div>
+
+        <div class="stat-card glass-card">
+          <div class="stat-icon-box purple-glow">
+            <i class="fa-solid fa-earth-americas"></i>
+          </div>
+          <div class="stat-info">
+            <h3 class="stat-value" id="stat-pref">0</h3>
+            <p class="stat-label">In Preferred Locations</p>
+          </div>
+          <div class="stat-trend text-glow">
+            <i class="fa-solid fa-location-crosshairs"></i>
+            <span>Tier-1 Geo Filter</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Advanced Filter Console -->
+      <section class="filter-section glass-card" id="search-filters-console">
+        <!-- Search & Category Selection -->
+        <div class="filter-main-row">
+          <div class="search-box glass-input-wrapper">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="input-search" class="glass-input" placeholder="Search by title, keywords, company, technologies...">
+            <button id="btn-clear-search" class="btn-clear hidden"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          
+          <div class="tab-selectors">
+            <button class="tab-btn active" data-tab="all-jobs">
+              <i class="fa-solid fa-list-ul"></i> Active Postings
+            </button>
+            <button class="tab-btn" data-tab="bookmarked">
+              <i class="fa-solid fa-star"></i> Bookmarks <span class="badge" id="badge-bookmarks">0</span>
+            </button>
+            <button class="tab-btn" data-tab="tracker">
+              <i class="fa-solid fa-square-check"></i> Job Hunting Tracker
+            </button>
+          </div>
+        </div>
+
+        <hr class="separator">
+
+        <!-- Multi-attribute Dropdowns & Category Pills -->
+        <div class="filter-options-row">
+          <!-- Role Filters -->
+          <div class="pills-container" id="category-pills">
+            <button class="pill active" data-role="all">All Roles</button>
+            <button class="pill" data-role="ai-ml">AI & ML</button>
+            <button class="pill" data-role="data-eng">Data Engineer</button>
+            <button class="pill" data-role="data-sci">Data Scientist</button>
+            <button class="pill" data-role="data-ana">Data Analyst</button>
+          </div>
+
+          <!-- Select Fields -->
+          <div class="dropdowns-container">
+            <div class="select-wrapper glass-select-wrapper">
+              <i class="fa-solid fa-map-pin select-icon"></i>
+              <select id="select-geo" class="glass-select">
+                <option value="all">Any Location</option>
+                <option value="India">🇮🇳 India</option>
+                <option value="Europe">🇪🇺 Europe</option>
+                <option value="Canada">🇨🇦 Canada</option>
+                <option value="US">🇺🇸 US / Canada</option>
+                <option value="Middle East">🇦🇪 Middle-East</option>
+                <option value="Remote">🌐 Remote Board</option>
+              </select>
+            </div>
+
+            <div class="select-wrapper glass-select-wrapper">
+              <i class="fa-solid fa-house-laptop select-icon"></i>
+              <select id="select-type" class="glass-select">
+                <option value="all">Any Type</option>
+                <option value="In-office">🏢 In-Office</option>
+                <option value="Hybrid">🤝 Hybrid</option>
+                <option value="Remote">🌐 Remote</option>
+              </select>
+            </div>
+            
+            <div class="select-wrapper glass-select-wrapper">
+              <i class="fa-solid fa-arrow-up-z-a select-icon"></i>
+              <select id="select-sort" class="glass-select">
+                <option value="match">🔥 Profile Match</option>
+                <option value="newest">Newest First</option>
+                <option value="company">Company A-Z</option>
+                <option value="title">Title A-Z</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Active Filter Summary -->
+      <div id="filter-summary" class="filter-summary hidden">
+        <span>Active Filters:</span>
+        <div class="summary-tags" id="summary-tags-container"></div>
+        <button id="btn-reset-filters" class="reset-link">Reset all filters</button>
+      </div>
+
+      <!-- Main Feed & List Section -->
+      <section class="jobs-feed-section">
+        <!-- Loading State -->
+        <div id="loading-spinner" class="feed-state-box hidden">
+          <div class="premium-loader">
+            <div class="loader-circle"></div>
+            <i class="fa-solid fa-brain loader-brain"></i>
+          </div>
+          <h3>Aggregating latest job intel...</h3>
+          <p>Scraping job sites & parsing corporate career pages. Please stand by.</p>
+        </div>
+
+        <!-- Empty Feed State -->
+        <div id="empty-state" class="feed-state-box hidden">
+          <div class="empty-icon-box">
+            <i class="fa-solid fa-folder-open"></i>
+          </div>
+          <h3>No job postings match your filters</h3>
+          <p>Try clearing some filters or click the "Sync Listings" button in the header to update data.</p>
+          <button id="btn-empty-reset" class="btn btn-secondary">Reset Filters</button>
+        </div>
+
+        <!-- Job Grid Container -->
+        <div id="jobs-grid" class="jobs-grid">
+          <!-- Dynamically populated card nodes go here -->
+        </div>
+      </section>
+      
+    </main>
+
+    <!-- Detail Overlay Panel (Slide-out Glass Panel) -->
+    <div id="detail-overlay" class="detail-overlay hidden">
+      <div class="overlay-backdrop"></div>
+      <div class="detail-panel glass-card">
+        <header class="panel-header">
+          <button id="btn-close-detail" class="btn-icon-close" title="Close Details"><i class="fa-solid fa-xmark"></i></button>
+          <div class="panel-company-branding">
+            <div class="company-logo-avatar large" id="detail-logo-placeholder">AB</div>
+            <div class="branding-text">
+              <h2 id="detail-title">Senior Machine Learning Engineer</h2>
+              <p class="company-sub" id="detail-company">NVIDIA</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="panel-meta-bar">
+          <div class="meta-item"><i class="fa-solid fa-map-pin"></i> <span id="detail-location">Bengaluru, India</span></div>
+          <div class="meta-item"><i class="fa-solid fa-house-laptop"></i> <span id="detail-type">In-Office</span></div>
+          <div class="meta-item"><i class="fa-solid fa-wallet"></i> <span id="detail-salary">Not specified</span></div>
+          <div class="meta-item"><i class="fa-solid fa-calendar-day"></i> <span id="detail-date">Posted 2 days ago</span></div>
+        </div>
+
+        <div class="panel-actions">
+          <a href="#" target="_blank" id="detail-apply-link" class="btn btn-primary btn-glow flex-grow text-center"><i class="fa-solid fa-paper-plane"></i> Apply Directly</a>
+          <button id="detail-btn-bookmark" class="btn btn-secondary"><i class="fa-solid fa-star"></i> Bookmark</button>
+          
+          <div class="status-tracker-box">
+            <label for="detail-status-select"><i class="fa-solid fa-route"></i> Application Tracker:</label>
+            <div class="glass-select-wrapper inline">
+              <select id="detail-status-select" class="glass-select tracking-select">
+                <option value="none">Not Applied</option>
+                <option value="applied">📂 Applied</option>
+                <option value="interviewing">💬 Interviewing</option>
+                <option value="offered">🏆 Offer Received</option>
+                <option value="rejected">❌ Rejected / Closed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <hr class="separator">
+
+        <div class="panel-body">
+          <h3 class="section-heading">Description Overview</h3>
+          <div class="job-description-content" id="detail-description">
+            <!-- Full description populated here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Job Tracker Console View -->
+    <div id="tracker-view-container" class="tracker-view-container hidden">
+      <section class="tracker-kanban-board">
+        
+        <div class="kanban-column" data-status="applied">
+          <div class="column-header">
+            <h3><span class="dot blue-dot"></span> Applied <span class="column-count" id="count-applied">0</span></h3>
+          </div>
+          <div class="kanban-cards-container" id="kanban-applied"></div>
+        </div>
+
+        <div class="kanban-column" data-status="interviewing">
+          <div class="column-header">
+            <h3><span class="dot yellow-dot"></span> Interviewing <span class="column-count" id="count-interviewing">0</span></h3>
+          </div>
+          <div class="kanban-cards-container" id="kanban-interviewing"></div>
+        </div>
+
+        <div class="kanban-column" data-status="offered">
+          <div class="column-header">
+            <h3><span class="dot green-dot"></span> Offers <span class="column-count" id="count-offered">0</span></h3>
+          </div>
+          <div class="kanban-cards-container" id="kanban-offered"></div>
+        </div>
+
+        <div class="kanban-column" data-status="rejected">
+          <div class="column-header">
+            <h3><span class="dot red-dot"></span> Closed <span class="column-count" id="count-rejected">0</span></h3>
+          </div>
+          <div class="kanban-cards-container" id="kanban-rejected"></div>
+        </div>
+        
+      </section>
+    </div>
+
+    <!-- Floating Global Toast Notifications -->
+    <div id="toast" class="toast hidden">
+      <i class="fa-solid fa-circle-check toast-icon"></i>
+      <span id="toast-message">Database updated successfully!</span>
+    </div>
+
+  </div>
+
+  <!-- Javascript Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
